@@ -1,0 +1,32 @@
+{
+  "snapshot_date": "2026-09-15",
+  "open_opportunities": 968,
+  "grants_gov_open": 965,
+  "nafosted_open_curated": 3,
+  "files": [
+    {
+      "file": "grants_gov_open_2026-09-15.json",
+      "bytes": 2948995,
+      "sha256": "e46e8517be45016dddca441481946dbef8421446ede33e6590a7493376ed8e68"
+    },
+    {
+      "file": "grants_gov_processing_summary.json",
+      "bytes": 557,
+      "sha256": "1779a344cb1ee4d4e151102b2460f66ddd3baf7b631ae7b047bf371316a88a44"
+    },
+    {
+      "file": "nafosted_candidate_posts_2026-09-15.json",
+      "bytes": 387331,
+      "sha256": "1b24930c52c37d7b7291bcd56fc35fb9e90d065c6e6642ef2258534be8c99f10"
+    },
+    {
+      "file": "nafosted_open_curated_2026-09-15.json",
+      "bytes": 31114,
+      "sha256": "c7624e77d3673b0136a3059d8f71ac46e50ffb2856f673de0c5144c8eca83d5a"
+    }
+  ],
+  "notes": [
+    "Grants.gov API live reported 964 posted on 2026-09-15; bulk snapshot dated 2026-09-14 contained 965 open-by-date records.",
+    "NAFOSTED open calls were reviewed against source deadline text."
+  ]
+}

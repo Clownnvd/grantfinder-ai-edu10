@@ -1,0 +1,47 @@
+name: grantfinder-checks
+on: [push, pull_request]
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: pgvector/pgvector:pg16
+        env:
+          POSTGRES_DB: grantfinder
+          POSTGRES_USER: grantfinder
+          POSTGRES_PASSWORD: grantfinder_local
+        ports: ["54329:5432"]
+        options: >-
+          --health-cmd "pg_isready -U grantfinder -d grantfinder"
+          --health-interval 5s --health-timeout 5s --health-retries 20
+    env:
+      PYTHONPATH: .
+      PYTHONUTF8: "1"
+      DATABASE_URL: postgresql://grantfinder:grantfinder_local@127.0.0.1:54329/grantfinder
+      USE_PGVECTOR: "1"
+      USE_LLM: "0"
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: "3.11"}
+      - run: pip install -r requirements.txt
+      - name: Core and evaluation
+        run: |
+          python -m grantfinder.test_core
+          python -m grantfinder.test_api
+          python -m grantfinder.eval
+      - name: PostgreSQL + pgvector
+        run: |
+          python scripts/init_pgvector.py
+          python scripts/ingest_grants_pgvector.py
+          python -m grantfinder.test_pgvector
+      - uses: actions/setup-node@v4
+        with: {node-version: "22"}
+      - uses: pnpm/action-setup@v4
+        with: {version: "9.15.9"}
+      - name: Frontend
+        working-directory: frontend
+        run: |
+          pnpm install --frozen-lockfile
+          pnpm typecheck
+          pnpm build

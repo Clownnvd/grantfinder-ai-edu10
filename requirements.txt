@@ -1,0 +1,7 @@
+fastapi==0.135.3
+uvicorn[standard]==0.44.0
+pydantic>=2,<3
+numpy>=1.26,<3
+requests>=2.31
+psycopg[binary]>=3.2,<4
+google-genai>=1.0

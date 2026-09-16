@@ -1,0 +1,15 @@
+{
+  "source_file": "GrantsDBExtract20260914v2.zip",
+  "as_of": "2026-09-15",
+  "counts": {
+    "total_records": 83394,
+    "type:OpportunitySynopsisDetail_1_0": 82460,
+    "status:closed_or_archived": 81495,
+    "status:open_indefinite": 83,
+    "status:open_by_date": 882,
+    "type:OpportunityForecastDetail_1_0": 934,
+    "status:forecasted": 934
+  },
+  "derived_open_records": 965,
+  "method_note": "Derived from dates in bulk XML. Use Grants.gov API posted status as authoritative live count; deadline explanations require text review."
+}

@@ -1,0 +1,123 @@
+{
+  "generated_at": "2026-09-16T15:12:32",
+  "dataset": "grantfinder_retrieval_v1",
+  "retrieval_mode": "in_memory_bm25+local_vector",
+  "cases": 10,
+  "metrics": {
+    "recall_at_3": 0.8,
+    "citation_coverage": 1.0,
+    "median_latency_ms": 64.59,
+    "provider_error_cases": 0
+  },
+  "thresholds": {
+    "recall_at_3": 0.8,
+    "citation_coverage": 1.0
+  },
+  "passed": true,
+  "time_saving": {
+    "status": "pending_real_user_measurement",
+    "reason": "Không dùng thời gian giả định làm kết quả."
+  },
+  "details": [
+    {
+      "query": "mathematical foundations artificial intelligence",
+      "target": "grants-353936",
+      "top3": [
+        "grants-302270",
+        "grants-328573",
+        "grants-341997"
+      ],
+      "hit": false
+    },
+    {
+      "query": "experiential technologies individual learning AI hubs",
+      "target": "grants-359949",
+      "top3": [
+        "grants-359949",
+        "grants-359003",
+        "grants-359666"
+      ],
+      "hit": true
+    },
+    {
+      "query": "bioinformatics computational biology research",
+      "target": "grants-359003",
+      "top3": [
+        "grants-359003",
+        "grants-356517",
+        "grants-356888"
+      ],
+      "hit": true
+    },
+    {
+      "query": "chemical process systems",
+      "target": "grants-362061",
+      "top3": [
+        "grants-362061",
+        "grants-363616",
+        "grants-346204"
+      ],
+      "hit": true
+    },
+    {
+      "query": "electrical communications computing systems",
+      "target": "grants-363613",
+      "top3": [
+        "grants-363613",
+        "grants-346204",
+        "grants-363616"
+      ],
+      "hit": true
+    },
+    {
+      "query": "energy power control networks",
+      "target": "grants-348258",
+      "top3": [
+        "grants-348258",
+        "grants-363613",
+        "grants-363616"
+      ],
+      "hit": true
+    },
+    {
+      "query": "secure open source ecosystems",
+      "target": "grants-361333",
+      "top3": [
+        "grants-360261",
+        "grants-353475",
+        "grants-360262"
+      ],
+      "hit": false
+    },
+    {
+      "query": "hợp tác khoa học Việt Nam Belarus",
+      "target": "nafosted-17668",
+      "top3": [
+        "nafosted-17668",
+        "nafosted-17672",
+        "nafosted-17693"
+      ],
+      "hit": true
+    },
+    {
+      "query": "hợp tác nghiên cứu Việt Nam Nga RSF",
+      "target": "nafosted-17672",
+      "top3": [
+        "nafosted-17672",
+        "nafosted-17668",
+        "nafosted-17693"
+      ],
+      "hit": true
+    },
+    {
+      "query": "nhiệm vụ Liên hiệp Hội khoa học kỹ thuật Việt Nam",
+      "target": "nafosted-17693",
+      "top3": [
+        "nafosted-17693",
+        "nafosted-17672",
+        "nafosted-17668"
+      ],
+      "hit": true
+    }
+  ]
+}
