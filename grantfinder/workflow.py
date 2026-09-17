@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 import uuid
-from datetime import datetime
+from datetime import UTC, datetime
 from typing import Any, Literal
 
 from grantfinder.audit import record_graph_run
@@ -22,7 +22,6 @@ from grantfinder.models import (
     ReviewRequest,
 )
 from grantfinder.review_store import ReviewStore
-
 
 GraphKind = Literal["match", "draft"]
 
@@ -61,7 +60,7 @@ class GrantWorkflow:
         return MatchResponse(
             run_id=run_id,
             state=final_state.get("status", "awaiting_researcher_review"),
-            generated_at=final_state.get("generated_at", datetime.now()),
+            generated_at=final_state.get("generated_at", datetime.now(UTC)),
             top_matches=final_state.get("matches", []),
             tool_trace=final_state.get("tool_trace", []),
             limitations=final_state.get("limitations", []),

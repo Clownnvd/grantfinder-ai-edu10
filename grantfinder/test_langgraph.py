@@ -3,7 +3,6 @@ from __future__ import annotations
 from grantfinder.models import DraftRequest, MatchRequest, ResearcherProfile
 from grantfinder.workflow import GrantWorkflow
 
-
 profile = ResearcherProfile(
     research_interests="artificial intelligence education",
     keywords=["machine learning"],

@@ -1,17 +1,14 @@
 from __future__ import annotations
 
 import json
-import sys
-from datetime import date, timedelta
+from datetime import UTC, date, datetime, timedelta
 from pathlib import Path
 
 from fastapi import FastAPI, HTTPException, Query
 from fastapi.middleware.cors import CORSMiddleware
 
-sys.path.insert(0, ".")
-
-from grantfinder.catalog import fold, get_catalog  # noqa: E402
-from grantfinder.models import (  # noqa: E402
+from grantfinder.catalog import fold, get_catalog
+from grantfinder.models import (
     DraftRequest,
     DraftResponse,
     MatchRequest,
@@ -19,8 +16,7 @@ from grantfinder.models import (  # noqa: E402
     ReviewDecision,
     ReviewRequest,
 )
-from grantfinder.workflow import GrantWorkflow  # noqa: E402
-
+from grantfinder.workflow import GrantWorkflow
 
 ROOT = Path(__file__).resolve().parents[1]
 app = FastAPI(
@@ -111,7 +107,7 @@ def sources() -> dict:
 
 @app.get("/api/v1/monitoring")
 def monitoring() -> dict:
-    today = date.today()
+    today = datetime.now(UTC).date()
     soon = today + timedelta(days=30)
     counts = {"active": 0, "closing_soon": 0, "expired": 0, "needs_review": 0}
     items = []

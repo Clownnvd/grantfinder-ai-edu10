@@ -13,7 +13,6 @@ from grantfinder.models import (
     ToolEvent,
 )
 
-
 Candidate = tuple[Opportunity, float, float]
 
 

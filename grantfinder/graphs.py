@@ -10,7 +10,6 @@ from grantfinder.catalog import GrantCatalog
 from grantfinder.graph_nodes import GrantGraphNodes
 from grantfinder.graph_state import DraftGraphState, MatchGraphState
 
-
 MATCH_GRAPH_NODES = [
     "search_opportunities",
     "check_eligibility",

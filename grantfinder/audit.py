@@ -1,11 +1,10 @@
 from __future__ import annotations
 
 import json
-from datetime import datetime
+from datetime import UTC, datetime
 from pathlib import Path
 
 from grantfinder.models import ToolEvent
-
 
 AUDIT_PATH = (
     Path(__file__).resolve().parents[1] / "artifacts" / "audit" / "agent_runs.jsonl"
@@ -24,7 +23,7 @@ def record_graph_run(
 
     AUDIT_PATH.parent.mkdir(parents=True, exist_ok=True)
     payload = {
-        "at": datetime.now().isoformat(timespec="seconds"),
+        "at": datetime.now(UTC).isoformat(timespec="seconds"),
         "run_id": run_id,
         "graph": graph,
         "status": status,

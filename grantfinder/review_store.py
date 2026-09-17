@@ -2,7 +2,7 @@ from __future__ import annotations
 
 import os
 import uuid
-from datetime import datetime
+from datetime import UTC, datetime
 from threading import Lock
 
 from psycopg import connect
@@ -24,7 +24,7 @@ class ReviewStore:
 
     def create(self, request: ReviewRequest) -> dict:
         review_id = "review-" + uuid.uuid4().hex[:10]
-        created_at = datetime.now()
+        created_at = datetime.now(UTC)
         if self.backend == "postgres":
             assert self.database_url is not None
             with connect(self.database_url, row_factory=dict_row) as connection:
@@ -66,7 +66,7 @@ class ReviewStore:
 
     def decide(self, review_id: str, decision: ReviewDecision) -> dict:
         status = "approved" if decision.approved else "changes_requested"
-        decided_at = datetime.now()
+        decided_at = datetime.now(UTC)
         if self.backend == "postgres":
             assert self.database_url is not None
             with connect(self.database_url, row_factory=dict_row) as connection:
@@ -101,12 +101,14 @@ class ReviewStore:
     def list(self) -> list[dict]:
         if self.backend == "postgres":
             assert self.database_url is not None
-            with connect(self.database_url, row_factory=dict_row) as connection:
-                with connection.cursor() as cursor:
-                    cursor.execute(
-                        "SELECT * FROM review_requests ORDER BY created_at DESC"
-                    )
-                    rows = cursor.fetchall()
+            with (
+                connect(self.database_url, row_factory=dict_row) as connection,
+                connection.cursor() as cursor,
+            ):
+                cursor.execute(
+                    "SELECT * FROM review_requests ORDER BY created_at DESC"
+                )
+                rows = cursor.fetchall()
             return [self._serialize(row) for row in rows]
 
         with self._lock:

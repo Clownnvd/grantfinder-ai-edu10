@@ -2,7 +2,7 @@ from __future__ import annotations
 
 import os
 import time
-from datetime import datetime
+from datetime import UTC, datetime
 from typing import Literal
 
 from psycopg import Error as PsycopgError
@@ -307,7 +307,7 @@ class GrantGraphNodes:
                 "và phạm vi đã trích từ nguồn gốc."
             ),
             "Mục tiêu nghiên cứu": (
-                "[NEEDS_INPUT] Viết 2–3 mục tiêu đo được và kiểm tra lại với "
+                "[NEEDS_INPUT] Viết 2 đến 3 mục tiêu đo được và kiểm tra lại với "
                 "call-for-proposal."
             ),
             "Phương pháp": (
@@ -434,7 +434,7 @@ def initial_match_state(request, run_id: str) -> MatchGraphState:
     return {
         "request": request,
         "run_id": run_id,
-        "generated_at": datetime.now(),
+        "generated_at": datetime.now(UTC),
         "candidates": [],
         "matches": [],
         "tool_trace": [],
