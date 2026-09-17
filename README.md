@@ -159,8 +159,7 @@ CI dựng pgvector service, ingest lại dữ liệu, chạy core/eval/pgvector 
 ## Đội
 
 - Nguyễn Văn Duy — nhóm trưởng
-- Đỗ Phúc Hưng
 - Dương Thị Ngân
-- Nguyễn Quang Duy
+- Vũ Huy Đô
 
 Bổ sung MSSV, GitHub và contribution thật trong `TEAMMATES.md` trước khi nộp.

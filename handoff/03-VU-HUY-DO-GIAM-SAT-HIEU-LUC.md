@@ -1,4 +1,4 @@
-# Bản 03 — Nguyễn Quang Duy — Giám sát hiệu lực
+# Bản 03 — Vũ Huy Đô — Giám sát hiệu lực
 
 ## 1. Mục tiêu
 

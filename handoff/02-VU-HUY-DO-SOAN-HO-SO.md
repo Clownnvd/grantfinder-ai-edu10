@@ -1,4 +1,4 @@
-# Bản 02 — Đỗ Phúc Hưng — Soạn hồ sơ/proposal
+# Bản 02 — Vũ Huy Đô — Soạn hồ sơ/proposal
 
 ## 1. Mục tiêu
 

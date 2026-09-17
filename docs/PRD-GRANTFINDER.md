@@ -37,9 +37,8 @@ Nhà nghiên cứu phải theo dõi nhiều website, đọc từng call-for-prop
 | Thành viên | Màn hình phụ trách | Definition of Done |
 |---|---|---|
 | Nguyễn Văn Duy | Màn chính/Khám phá cơ hội | Form hồ sơ, top 3, score, citation, trace và responsive |
-| Đỗ Phúc Hưng | Soạn hồ sơ/proposal | Chọn nguồn, confirmation, draft, `[NEEDS_INPUT]`, gửi review |
-| Nguyễn Quang Duy | Giám sát hiệu lực | 4 trạng thái deadline, số lượng, danh sách, URL kiểm chứng |
 | Dương Thị Ngân | Đăng nhập/Đăng ký | Hai mode, validation cơ bản, role selector, trạng thái thành công/lỗi |
+| Vũ Huy Đô | Soạn hồ sơ + Giám sát hiệu lực | Draft/HITL/revision và 4 trạng thái deadline có URL kiểm chứng |
 
 ## Non-goals MVP
 

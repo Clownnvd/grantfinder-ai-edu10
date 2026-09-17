@@ -5,9 +5,9 @@
 | Màn hình | Người phụ trách | File/route |
 |---|---|---|
 | Màn chính — Trợ lý tìm quỹ | Nguyễn Văn Duy | `GrantFinderApp`, `GrantChat*`, `ResearchProfilePanel`, `GrantOpportunityCard` |
-| Soạn hồ sơ/proposal | Đỗ Phúc Hưng | `frontend/components/ProposalWorkspace.tsx` |
-| Giám sát hiệu lực | Nguyễn Quang Duy | `frontend/components/MonitoringView.tsx` |
 | Đăng nhập/Đăng ký | Dương Thị Ngân | `frontend/components/AuthWireframe.tsx` |
+| Soạn hồ sơ/proposal | Vũ Huy Đô | `frontend/components/ProposalWorkspace.tsx` |
+| Giám sát hiệu lực | Vũ Huy Đô | `frontend/components/MonitoringView.tsx` |
 
 Ownership dùng để chia việc và commit. Mỗi thành viên phải tự hoàn thiện, test và commit phần được giao trước khi ghi nhận contribution.
 

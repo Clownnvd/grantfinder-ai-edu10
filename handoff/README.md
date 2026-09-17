@@ -5,8 +5,8 @@
 | Gói | Người phụ trách | Phần việc |
 |---|---|---|
 | 01 | Nguyễn Văn Duy | Màn chính — Khám phá cơ hội |
-| 02 | Đỗ Phúc Hưng | Soạn hồ sơ/proposal và vòng sửa |
-| 03 | Nguyễn Quang Duy | Giám sát call còn hiệu lực/hết hiệu lực |
+| 02 | Vũ Huy Đô | Soạn hồ sơ/proposal và vòng sửa |
+| 03 | Vũ Huy Đô | Giám sát call còn hiệu lực/hết hiệu lực |
 | 04 | Dương Thị Ngân | Đăng nhập, đăng ký và trạng thái tài khoản |
 
 ## Quy tắc làm việc
@@ -21,9 +21,9 @@
 
 ## Thứ tự merge
 
-1. Nguyễn Quang Duy — component giám sát độc lập.
+1. Vũ Huy Đô — component giám sát độc lập.
 2. Dương Thị Ngân — component tài khoản độc lập.
-3. Đỗ Phúc Hưng — draft flow và vòng sửa.
+3. Vũ Huy Đô — draft flow và vòng sửa.
 4. Nguyễn Văn Duy — màn chính, ghép navigation và integration cuối.
 
 ## Kiểm tra tích hợp sau merge
