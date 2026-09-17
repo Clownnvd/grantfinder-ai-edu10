@@ -1,0 +1,11 @@
+.git
+.github
+.env
+.env.*
+!.env.example
+**/__pycache__
+**/*.pyc
+frontend/node_modules
+frontend/.next
+artifacts/audit
+raw

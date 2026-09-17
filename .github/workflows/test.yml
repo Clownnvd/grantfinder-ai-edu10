@@ -20,15 +20,20 @@ jobs:
       DATABASE_URL: postgresql://grantfinder:grantfinder_local@127.0.0.1:54329/grantfinder
       USE_PGVECTOR: "1"
       USE_LLM: "0"
+      LANGGRAPH_STRICT_MSGPACK: "true"
+      REVIEW_STORE_BACKEND: memory
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
         with: {python-version: "3.11"}
-      - run: pip install -r requirements.txt
+      - run: pip install -r requirements-dev.txt
+      - name: Lint LangGraph and API layers
+        run: ruff check grantfinder/audit.py grantfinder/graph_state.py grantfinder/graph_nodes.py grantfinder/graphs.py grantfinder/workflow.py grantfinder/review_store.py grantfinder/test_langgraph.py bff/grant_main.py
       - name: Core and evaluation
         run: |
           python -m grantfinder.test_core
           python -m grantfinder.test_api
+          python -m grantfinder.test_langgraph
           python -m grantfinder.eval
       - name: PostgreSQL + pgvector
         run: |
@@ -38,7 +43,7 @@ jobs:
       - uses: actions/setup-node@v4
         with: {node-version: "22"}
       - uses: pnpm/action-setup@v4
-        with: {version: "9.15.9"}
+        with: {version: "10.26.2"}
       - name: Frontend
         working-directory: frontend
         run: |

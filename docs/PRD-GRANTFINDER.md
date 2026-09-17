@@ -20,6 +20,26 @@ Nhà nghiên cứu phải theo dõi nhiều website, đọc từng call-for-prop
 | Phòng KHCN kiểm soát | Role manager mới ghi được approve/request changes |
 | Audit agent | Mỗi run hiện tool, input summary, output summary, trạng thái và latency |
 | Xử lý lỗi | pgvector/Gemini lỗi có fallback được ghi trong trace; app không crash |
+| Giám sát hiệu lực | Phân loại call còn hiệu lực, sắp hết hạn, hết hiệu lực hoặc cần xác minh từ deadline nguồn |
+| Tài khoản và phân quyền | Wireframe có đăng nhập/đăng ký; production kiểm tra session và role tại backend |
+
+## Information architecture
+
+1. **Khám phá cơ hội:** nhập hồ sơ, nhận top 3, xem lý do và citation.
+2. **Dựng đề xuất:** xác nhận cơ hội, tạo draft, đánh dấu trường còn thiếu.
+3. **Giám sát hiệu lực:** theo dõi deadline và mở nguồn kiểm tra.
+4. **Hàng chờ phê duyệt:** manager approve hoặc yêu cầu sửa.
+5. **Nguồn và đánh giá:** provenance, corpus size, retrieval mode và metrics.
+6. **Đăng nhập/Đăng ký:** onboarding, email, mật khẩu và lựa chọn vai trò.
+
+## Phân công wireframe
+
+| Thành viên | Màn hình phụ trách | Definition of Done |
+|---|---|---|
+| Nguyễn Văn Duy | Màn chính/Khám phá cơ hội | Form hồ sơ, top 3, score, citation, trace và responsive |
+| Đỗ Phúc Hưng | Soạn hồ sơ/proposal | Chọn nguồn, confirmation, draft, `[NEEDS_INPUT]`, gửi review |
+| Nguyễn Quang Duy | Giám sát hiệu lực | 4 trạng thái deadline, số lượng, danh sách, URL kiểm chứng |
+| Dương Thị Ngân | Đăng nhập/Đăng ký | Hai mode, validation cơ bản, role selector, trạng thái thành công/lỗi |
 
 ## Non-goals MVP
 

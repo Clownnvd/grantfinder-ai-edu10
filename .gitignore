@@ -50,6 +50,11 @@ Thumbs.db
 # gateway config chua key - chi commit ban .example
 gateway/litellm.config.yaml
 artifacts/audit/
+artifacts/handoff/**/01-NGUYEN-VAN-DUY-MAN-CHINH/
+artifacts/handoff/**/02-DO-PHUC-HUNG-SOAN-HO-SO/
+artifacts/handoff/**/03-NGUYEN-QUANG-DUY-GIAM-SAT-HIEU-LUC/
+artifacts/handoff/**/04-DUONG-THI-NGAN-DANG-NHAP-DANG-KY/
+artifacts/grantfinder-langgraph-*.png
 
 # dataset ngoai - tai lai bang scripts/tai_vifactcheck.py
 data/ngoai/
@@ -61,4 +66,3 @@ data/ngoai/
 # cron giám sát state (runtime)
 data/giam_sat_cursor.txt
 data/giam_sat_thay_doi.json
-

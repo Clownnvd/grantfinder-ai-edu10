@@ -20,7 +20,15 @@ export type MatchItem = {
   why_matched: string[]; citations: SourceSpan[];
 };
 export type ToolEvent = { step: number; tool: string; status: string; input: Record<string, unknown>; output_summary: Record<string, unknown>; duration_ms: number; error?: string | null };
-export type MatchResponse = { run_id: string; state: string; generated_at: string; top_matches: MatchItem[]; tool_trace: ToolEvent[]; limitations: string[] };
-export type DraftResponse = { draft_id: string; state: string; banner: string; opportunity: Opportunity; sections: Record<string, string>; missing_information: string[]; citations: SourceSpan[]; tool_trace: ToolEvent[] };
+export type MatchResponse = { run_id: string; state: string; generated_at: string; top_matches: MatchItem[]; tool_trace: ToolEvent[]; limitations: string[]; orchestration: "langgraph"; graph_nodes: string[] };
+export type DraftResponse = { run_id: string; draft_id: string; state: string; banner: string; opportunity: Opportunity; sections: Record<string, string>; missing_information: string[]; citations: SourceSpan[]; tool_trace: ToolEvent[]; orchestration: "langgraph"; graph_nodes: string[] };
 export type SourceStats = { open_opportunities: number; by_source: Record<string, number>; next_deadlines: {id:string;title:string;close_date:string;source:string}[]; snapshot_date:string; retrieval_mode:string; sources?: {name:string;role:string;mode:string;provenance:string;count:number|null}[] };
 export type ReviewRecord = { review_id:string;draft_id:string;opportunity_id:string;note:string;status:string;created_at:string;decision?:{approved:boolean;note:string;decided_at:string}|null };
+export type MonitoringStatus = "active" | "closing_soon" | "expired" | "needs_review";
+export type MonitoringResponse = {
+  checked_at: string;
+  snapshot_date: string;
+  counts: Record<MonitoringStatus, number>;
+  items: { id:string; title:string; source:string; close_date:string|null; status:MonitoringStatus; canonical_url:string }[];
+  limitations: string;
+};

@@ -1,12 +1,12 @@
 {
-  "generated_at": "2026-09-16T15:12:32",
+  "generated_at": "2026-09-17T12:12:02",
   "dataset": "grantfinder_retrieval_v1",
   "retrieval_mode": "in_memory_bm25+local_vector",
   "cases": 10,
   "metrics": {
     "recall_at_3": 0.8,
     "citation_coverage": 1.0,
-    "median_latency_ms": 64.59,
+    "median_latency_ms": 40.97,
     "provider_error_cases": 0
   },
   "thresholds": {

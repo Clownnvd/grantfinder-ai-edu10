@@ -14,7 +14,7 @@ Repo public này là bản MVP của đề **EDU-10** để các nhóm khác có
 - PostgreSQL 16 + pgvector đã nạp đủ 968 bản ghi.
 - Hybrid retrieval: PostgreSQL full-text/BM25 signal + cosine pgvector + eligibility rules + rerank.
 - Hai vai trò: `researcher` và `research_manager`.
-- Agent trace có trạng thái và tool-use.
+- LangGraph điều phối hai state graph, có conditional edges, checkpoint và tool trace.
 - Draft bắt buộc nhà nghiên cứu xác nhận; sau đó tiếp tục chờ phòng KHCN duyệt.
 - Gemini chỉ diễn đạt draft khi bật; lỗi/key trống tự lùi về template tất định.
 - Benchmark pgvector hiện tại: Recall@3 = 0,80; citation coverage = 1,00; median latency ≈120 ms. Thời gian tiết kiệm chưa được công bố vì chưa đo người dùng thật.
@@ -36,7 +36,7 @@ flowchart LR
   R[Researcher] --> UI[Next.js 16]
   M[Research manager] --> UI
   UI --> API[FastAPI BFF]
-  API --> WF[Stateful grant workflow]
+  API --> WF[LangGraph state graphs]
   WF --> S[search_opportunities]
   S --> PG[(PostgreSQL + pgvector)]
   WF --> E[deterministic eligibility]
@@ -50,6 +50,14 @@ flowchart LR
 ```
 
 Nguyên tắc kế thừa từ Policy Radar: code quyết định hard facts và guard; LLM chỉ xử lý ngôn ngữ, bị kiểm tra trước khi output được sử dụng.
+
+Chi tiết graph, state và deployment nằm trong `docs/architecture_diagram.md` và `docs/ADR-001-LANGGRAPH.md`.
+
+## Giao diện
+
+Frontend dùng design system và interaction shell của Policy Radar: sidebar/rail thu gọn, lịch sử phiên, chat trung tâm, profile context, citation cards, dark mode và mobile overlay. Nghiệp vụ đã được chuyển hoàn toàn sang GrantFinder và bổ sung đủ sáu màn: trợ lý tìm quỹ, soạn hồ sơ, giám sát hiệu lực, hàng chờ duyệt, nguồn/đánh giá và tài khoản.
+
+Ảnh kiểm chứng mới nằm trong `artifacts/wireframe-policy-radar-*.png`.
 
 ## Nguồn dữ liệu
 
@@ -110,11 +118,14 @@ Không đưa key vào Git. Nếu Gemini lỗi, draft deterministic vẫn chạy 
 | POST | `/api/v1/reviews` | gửi phòng KHCN duyệt |
 | POST | `/api/v1/reviews/{id}/decision` | manager approve/request changes |
 | GET | `/api/v1/evaluation` | metric có artifact; không có thì nói chưa chạy |
+| GET | `/api/v1/graph/runs/{run_id}` | inspect checkpoint và tool trace LangGraph |
 
 ## Kiểm thử
 
 ```powershell
 python -m grantfinder.test_core
+python -m grantfinder.test_api
+python -m grantfinder.test_langgraph
 python -m grantfinder.eval
 python -m grantfinder.test_pgvector
 cd frontend
@@ -129,6 +140,7 @@ CI dựng pgvector service, ingest lại dữ liệu, chạy core/eval/pgvector 
 - Web app deploy: Next.js + FastAPI, cấu hình Docker/Railway.
 - ≥2 vai trò: researcher và research manager.
 - Agentic workflow có state/tool-use: trace bốn bước và checkpoint.
+- LangGraph: hai graph thực, conditional routing, `thread_id` và checkpoint inspect được.
 - HITL: xác nhận trước draft và phê duyệt của phòng KHCN.
 - Error/limit: provider fallback, role gate, source audit, không tự submit.
 - Dữ liệu: công khai, snapshot có provenance; không chứa CV/dữ liệu nhạy cảm thật.
@@ -141,7 +153,7 @@ CI dựng pgvector service, ingest lại dữ liệu, chạy core/eval/pgvector 
 - Eligibility trả `needs_review` khi thiếu căn cứ; không coi semantic match là đủ điều kiện.
 - Local vector hiện là hash embedding 256 chiều để tái lập không cần key. Trước production cần đánh giá multilingual embedding riêng trên cùng gold set.
 - Chưa đo giảm ≥50% thời gian với người dùng thật.
-- Review queue hiện lưu trong memory cho demo; schema PostgreSQL đã có để chuyển sang persistence.
+- Review queue dùng memory trong test/local và PostgreSQL khi `REVIEW_STORE_BACKEND=postgres`.
 - Chưa tự động cập nhật hàng ngày trong bản MVP; source sync sẽ chạy theo lịch ở giai đoạn tiếp theo.
 
 ## Đội

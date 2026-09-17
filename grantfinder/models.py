@@ -90,11 +90,13 @@ class MatchRequest(BaseModel):
 
 class MatchResponse(BaseModel):
     run_id: str
-    state: Literal["awaiting_researcher_review"]
+    state: Literal["awaiting_researcher_review", "needs_profile_refinement"]
     generated_at: datetime
     top_matches: list[MatchItem]
     tool_trace: list[ToolEvent]
     limitations: list[str]
+    orchestration: Literal["langgraph"] = "langgraph"
+    graph_nodes: list[str] = []
 
 
 class DraftRequest(BaseModel):
@@ -106,6 +108,7 @@ class DraftRequest(BaseModel):
 
 
 class DraftResponse(BaseModel):
+    run_id: str
     draft_id: str
     state: Literal["awaiting_research_office_review"]
     banner: str
@@ -114,6 +117,8 @@ class DraftResponse(BaseModel):
     missing_information: list[str]
     citations: list[SourceSpan]
     tool_trace: list[ToolEvent]
+    orchestration: Literal["langgraph"] = "langgraph"
+    graph_nodes: list[str] = []
 
 
 class ReviewRequest(BaseModel):

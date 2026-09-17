@@ -1,0 +1,7 @@
+packages:
+  - "."
+
+# Supply-chain hardening for newly published or downgraded dependencies.
+minimumReleaseAge: 1440
+blockExoticSubdeps: true
+trustPolicy: no-downgrade
